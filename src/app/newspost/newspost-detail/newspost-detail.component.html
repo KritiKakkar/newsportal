@@ -1,0 +1,35 @@
+
+    <section class="blog-detail mtb-40">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+           
+            <div class="blog-left" *ngIf= "news$
+            | async as n else loading">
+            
+
+              <h1>{{n.newsTitle}}</h1>
+              <div class="posted-on">
+                  <p>
+                    by <span>{{n.newsAuthor}}</span> on 
+                    <span>{{n.newsTime | date:'mediumDate'}}</span>
+                  </p>
+              </div>
+              <div class="detail-img">
+                 <img src="{{n.image}}" alt="{{n.newsTitle}}" />
+              </div>
+              <div class="blog-desc" [innerHTML]="n.newsMatter"></div>
+            </div>
+            <ng-template #loading>
+                <div class="service-error">
+                    <h3>Error loading of the blog detail. Please try again later.</h3>
+                </div>
+            </ng-template>
+          </div>
+          <div class="col-md-4">
+            <app-newspost-recent></app-newspost-recent>
+            <app-categories></app-categories>
+          </div>
+        </div>
+      </div>
+    </section>
